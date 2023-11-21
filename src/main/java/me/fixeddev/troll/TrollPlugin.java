@@ -3,6 +3,8 @@ package me.fixeddev.troll;
 import me.fixeddev.troll.listeners.UserListeners;
 import me.fixeddev.troll.troll.SimpleTrollTypesRegistry;
 import me.fixeddev.troll.troll.TrollTypesRegistry;
+import me.fixeddev.troll.troll.types.FakeCreepersTroll;
+import me.fixeddev.troll.troll.types.KnockbackZombieTroll;
 import me.fixeddev.troll.user.UserRegistry;
 import me.fixeddev.troll.user.YamlUserRegistry;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +26,9 @@ public class TrollPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         trollTypesRegistry = new SimpleTrollTypesRegistry();
+        trollTypesRegistry.register(new KnockbackZombieTroll(this));
+        trollTypesRegistry.register(new FakeCreepersTroll(this));
+
         userRegistry = new YamlUserRegistry(new File(getDataFolder(), "users"), trollTypesRegistry);
 
         getServer().getScheduler().runTaskAsynchronously(this, () -> { // let's run it on another thread.
@@ -31,6 +36,7 @@ public class TrollPlugin extends JavaPlugin {
         });
 
         getServer().getPluginManager().registerEvents(new UserListeners(userRegistry), this);
+
     }
 
     public TrollTypesRegistry getTrollTypesRegistry() {
