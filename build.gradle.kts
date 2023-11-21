@@ -24,3 +24,7 @@ java {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.assemble {
+    dependsOn(tasks.reobfJar)
+}
