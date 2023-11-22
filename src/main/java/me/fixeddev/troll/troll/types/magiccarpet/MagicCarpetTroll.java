@@ -24,7 +24,7 @@ public class MagicCarpetTroll implements TrollType {
 
     @Override
     public Component displayName() {
-        return Component.translatable("troll.types.magic-carpet");
+        return Component.translatable("troll.type.magic-carpet");
     }
 
     @Override
