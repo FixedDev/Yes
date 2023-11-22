@@ -18,6 +18,10 @@ public final class YamlUserRegistry extends AbstractUserRegistry {
     public YamlUserRegistry(File dataFolder, TrollTypesRegistry trollTypesRegistry) {
         this.dataFolder = dataFolder;
         this.trollTypesRegistry = trollTypesRegistry;
+
+        if (!dataFolder.exists()) {
+            dataFolder.mkdirs();
+        }
     }
 
     @Override
@@ -60,6 +64,10 @@ public final class YamlUserRegistry extends AbstractUserRegistry {
     }
 
     private User loadFromFile(YamlConfiguration userFile) {
+        if (userFile.getString("user.id") == null) {
+            return null;
+        }
+
         String userIdStr = Objects.requireNonNull(userFile.getString("user.id")); // we know that it isn't null
         UUID userId = UUID.fromString(userIdStr);
 

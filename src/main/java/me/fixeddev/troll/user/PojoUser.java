@@ -3,10 +3,7 @@ package me.fixeddev.troll.user;
 import it.unimi.dsi.fastutil.Pair;
 import me.fixeddev.troll.troll.TrollType;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class PojoUser implements User {
 
@@ -18,6 +15,10 @@ public class PojoUser implements User {
         this.trollHistory = trollHistory;
     }
 
+    public PojoUser(UUID id) {
+        this.id = id;
+        this.trollHistory = new ArrayList<>();
+    }
 
     @Override
     public UUID id() {

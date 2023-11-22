@@ -1,5 +1,7 @@
 package me.fixeddev.troll.listeners;
 
+import me.fixeddev.troll.user.PojoUser;
+import me.fixeddev.troll.user.User;
 import me.fixeddev.troll.user.UserRegistry;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,7 +18,14 @@ public class UserListeners implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        userRegistry.getOrFind(event.getPlayer().getUniqueId()); // first load the user.
+        userRegistry.getOrFind(event.getPlayer().getUniqueId()).thenAccept(user -> {
+            if (user == null) {
+                user = new PojoUser(event.getPlayer().getUniqueId());
+
+                userRegistry.cache(user);
+                userRegistry.save(user);
+            }
+        }); // first load the user.
     }
 
     @EventHandler
