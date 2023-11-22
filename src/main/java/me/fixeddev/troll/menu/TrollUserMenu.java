@@ -4,6 +4,7 @@ import com.github.stefvanschie.inventoryframework.adventuresupport.ComponentHold
 import com.github.stefvanschie.inventoryframework.gui.GuiItem;
 import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
 import com.github.stefvanschie.inventoryframework.gui.type.util.Gui;
+import com.github.stefvanschie.inventoryframework.pane.MasonryPane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import com.github.stefvanschie.inventoryframework.pane.StaticPane;
 import me.fixeddev.troll.troll.TrollType;
@@ -31,10 +32,12 @@ public class TrollUserMenu {
             clickEvent.setCancelled(true);
         });
 
-        Pane nineLengthDecorativePane = generateDecorativePane(9);
-        chestGui.addPane(nineLengthDecorativePane);
-        chestGui.addPane(addTrollItems(target, troll));
-        chestGui.addPane(nineLengthDecorativePane);
+        MasonryPane masonryPane = new MasonryPane(9, 3);
+        masonryPane.addPane(generateDecorativePane(9));
+        masonryPane.addPane(addTrollItems(target, troll));
+        masonryPane.addPane(generateDecorativePane(9));
+
+        chestGui.addPane(masonryPane);
 
         return chestGui;
     }
@@ -43,13 +46,14 @@ public class TrollUserMenu {
         StaticPane staticPane = new StaticPane(9, 1);
         Collection<TrollType> trollTypes = trollTypesRegistry.allTypes();
 
+        ItemStack blackPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+        blackPane.editMeta(itemMeta -> itemMeta.displayName(Component.text(" ", NamedTextColor.BLACK)));
+
         int x = 0;
         for (TrollType trollType : trollTypes) {
             staticPane.addItem(generateItem(trollType, target, troll), x++, 0);
+            staticPane.addItem(new GuiItem(blackPane), x++, 0);
         }
-
-        ItemStack blackPane = new ItemStack(Material.BLACK_STAINED_GLASS);
-        blackPane.editMeta(itemMeta -> itemMeta.displayName(Component.text(" ", NamedTextColor.BLACK)));
 
         staticPane.fillWith(blackPane);
 
@@ -67,7 +71,7 @@ public class TrollUserMenu {
 
     private Pane generateDecorativePane(int length) {
         StaticPane staticPane = new StaticPane(length, 1);
-        ItemStack blackPane = new ItemStack(Material.BLACK_STAINED_GLASS);
+        ItemStack blackPane = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         blackPane.editMeta(itemMeta -> itemMeta.displayName(Component.text(" ", NamedTextColor.BLACK)));
 
         staticPane.fillWith(blackPane);
