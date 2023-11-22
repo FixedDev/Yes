@@ -13,6 +13,8 @@ import me.fixeddev.troll.troll.TrollTypesRegistry;
 import me.fixeddev.troll.user.User;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.Style;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -68,7 +70,7 @@ public class TrollUserMenu {
     private GuiItem generateItem(TrollType trollType, User target, User troll) {
         ItemStack itemStack = new ItemStack(Material.PAPER);
 
-        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate(trollType.displayName())));
+        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate(trollType.displayName()).decoration(TextDecoration.ITALIC,false)));
 
         return new GuiItem(itemStack, inventoryClickEvent -> {
             trollType.executeTroll(troll, target);

@@ -11,6 +11,7 @@ import me.fixeddev.troll.troll.TrollType;
 import me.fixeddev.troll.user.User;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -61,28 +62,28 @@ public class TrollStatsMenu {
 
     private ItemStack generateLastTrollItem(String name) {
         ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD);
-        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.last-troll", Placeholder.unparsed("player", name))));
+        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.last-troll", Placeholder.unparsed("player", name)).decoration(TextDecoration.ITALIC,false)));
 
         return itemStack;
     }
 
     private ItemStack generateTrolledTimesItem(int times) {
         ItemStack itemStack = new ItemStack(Material.REDSTONE);
-        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.trolled-times", Placeholder.unparsed("times", String.valueOf(times)))));
+        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.trolled-times", Placeholder.unparsed("times", String.valueOf(times))).decoration(TextDecoration.ITALIC,false)));
 
         return itemStack;
     }
 
     private ItemStack generateUnknownLastTypeOfTroll() {
         ItemStack itemStack = new ItemStack(Material.PAPER);
-        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.last-troll-type", Placeholder.unparsed("type", "Unknown"))));
+        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.last-troll-type", Placeholder.unparsed("type", "Unknown")).decoration(TextDecoration.ITALIC,false)));
 
         return itemStack;
     }
 
     private ItemStack generateLastTypeOfTroll(TrollType trollType) {
         ItemStack itemStack = new ItemStack(Material.PAPER);
-        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.last-troll-type", Placeholder.component("type", translator.translate(trollType.displayName())))));
+        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate("troll.stat-menu.last-troll-type", Placeholder.component("type", translator.translate(trollType.displayName()))).decoration(TextDecoration.ITALIC,false)));
 
         return itemStack;
     }
