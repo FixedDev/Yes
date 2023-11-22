@@ -1,0 +1,11 @@
+name: TrollPlugin
+version: 1.0
+main: me.fixeddev.troll.TrollPlugin
+api-version: 1.19
+commands:
+  troll:
+    permission: "troll.command"
+    description: "The command used to troll more users."
+    usage: "<command> <target>"
+libraries:
+  - "com.github.stefvanschie.inventoryframework:IF:0.10.7"
