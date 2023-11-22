@@ -4,14 +4,8 @@ import me.fixeddev.troll.troll.TrollType;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.util.Vector;
-
-import java.util.Random;
 
 public class MagicCarpetTroll implements TrollType {
 

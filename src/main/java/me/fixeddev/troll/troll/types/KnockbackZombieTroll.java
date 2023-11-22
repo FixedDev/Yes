@@ -3,7 +3,6 @@ package me.fixeddev.troll.troll.types;
 import me.fixeddev.troll.troll.TrollType;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
-import org.bukkit.EntityEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
