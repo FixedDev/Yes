@@ -48,13 +48,18 @@ public class SlingshotTroll implements TrollType {
     @Override
     public void executeTroll(Player troll, Player trolled) {
         Location location = trolled.getLocation();
+        trolled.sendMessage(Component.translatable("troll.slingshot.bye-bye"));
 
         Minecart minecart = location.getWorld().spawn(location, Minecart.class);
         minecart.addPassenger(trolled);
 
         minecart.setVelocity(new Vector(0,15,0));
 
-        Bukkit.getScheduler().runTaskLater(plugin, minecart::remove, 60);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            minecart.remove();
+            trolled.sendMessage(Component.translatable("troll.slingshot.good-luck"));
+
+        }, 60);
     }
 
 }

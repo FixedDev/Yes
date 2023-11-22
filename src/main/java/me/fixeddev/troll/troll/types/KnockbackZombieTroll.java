@@ -39,6 +39,8 @@ public class KnockbackZombieTroll implements TrollType {
 
         Zombie zombie = generateZombie(location, trolled);
 
+        trolled.sendMessage(Component.translatable("troll.kb-zombie.good-luck"));
+
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             zombie.attack(trolled);
             zombie.swingMainHand();
