@@ -1,7 +1,9 @@
 package me.fixeddev.troll;
 
 import me.fixeddev.troll.commands.TrollCommand;
+import me.fixeddev.troll.commands.TrollStatsCommand;
 import me.fixeddev.troll.listeners.UserListeners;
+import me.fixeddev.troll.menu.TrollStatsMenu;
 import me.fixeddev.troll.menu.TrollUserMenu;
 import me.fixeddev.troll.troll.SimpleTrollTypesRegistry;
 import me.fixeddev.troll.troll.TrollTypesRegistry;
@@ -50,8 +52,11 @@ public class TrollPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new UserListeners(userRegistry), this);
 
         TrollUserMenu trollUserMenu = new TrollUserMenu(trollTypesRegistry, translator);
+        TrollStatsMenu trollStatsMenu = new TrollStatsMenu(translator);
 
         getCommand("troll").setExecutor(new TrollCommand(trollUserMenu, userRegistry, translator));
+        getCommand("trollstats").setExecutor(new TrollStatsCommand(trollStatsMenu, userRegistry, translator));
+
     }
 
     public TrollTypesRegistry getTrollTypesRegistry() {

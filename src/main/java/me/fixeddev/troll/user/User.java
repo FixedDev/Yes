@@ -36,4 +36,14 @@ public interface User {
      * @return A {@linkplain List} of pairs<Troll's id, {@linkplain TrollType}>
      */
     List<Map.Entry<UUID, TrollType>> trollHistory();
+
+    default Optional<TrollType> getLastTrollType() {
+        if (!trollHistory().isEmpty()) {
+            Map.Entry<UUID, TrollType> pair = trollHistory().get(trollHistory().size() - 1);
+
+            return Optional.ofNullable(pair != null ? pair.getValue(): null);
+        }
+
+        return Optional.empty();
+    }
 }

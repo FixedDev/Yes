@@ -7,3 +7,7 @@ commands:
     permission: "troll.command"
     description: "The command used to troll more users."
     usage: "<command> <target>"
+  trollstats:
+    permission: "troll.command.stats"
+    description: "The command used to check troll stats of a user."
+    usage: "<command> <target>"
