@@ -57,7 +57,7 @@ public class TrollCommand implements CommandExecutor {
         User userSender = optSender.get();
         User userTarget = optUser.get();
 
-        trollUserMenu.generateGui(userTarget, userSender);
+        trollUserMenu.generateGui(userTarget, userSender).show(senderPlayer);
         senderPlayer.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 0);
 
         return true;
