@@ -16,12 +16,24 @@ public class Translator {
         this.plugin = plugin;
     }
 
+    public void send(Audience audience, Component component, TagResolver... resolvers) {
+        audience.sendMessage(translate(component, resolvers));
+    }
+
     public void send(Audience audience, TranslatableComponent component, TagResolver... resolvers) {
         audience.sendMessage(translate(component, resolvers));
     }
 
     public void send(Audience audience, String path, TagResolver... resolvers) {
         audience.sendMessage(translate(path, resolvers));
+    }
+
+    public Component translate(Component component, TagResolver... resolvers) {
+        if (!(component instanceof TranslatableComponent translatableComponent)) {
+            return component;
+        }
+
+        return translate(translatableComponent, resolvers);
     }
 
     public Component translate(TranslatableComponent component, TagResolver... resolvers) {

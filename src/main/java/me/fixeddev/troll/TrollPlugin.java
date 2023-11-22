@@ -19,6 +19,7 @@ public class TrollPlugin extends JavaPlugin {
 
     private TrollTypesRegistry trollTypesRegistry;
     private UserRegistry userRegistry;
+    private Translator translator;
 
     @Override
     public void onDisable() {
@@ -29,11 +30,14 @@ public class TrollPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        translator = new Translator(this);
+
         trollTypesRegistry = new SimpleTrollTypesRegistry();
-        trollTypesRegistry.register(new KnockbackZombieTroll(this));
-        trollTypesRegistry.register(new FakeCreepersTroll(this));
-        trollTypesRegistry.register(new SlingshotTroll(this));
-        trollTypesRegistry.register(new MagicCarpetTroll(this));
+        trollTypesRegistry.register(new KnockbackZombieTroll(this, translator));
+        trollTypesRegistry.register(new FakeCreepersTroll(this, translator));
+        trollTypesRegistry.register(new SlingshotTroll(this, translator));
+        trollTypesRegistry.register(new MagicCarpetTroll(this, translator));
 
         userRegistry = new YamlUserRegistry(new File(getDataFolder(), "users"), trollTypesRegistry);
 
@@ -43,9 +47,9 @@ public class TrollPlugin extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new UserListeners(userRegistry), this);
 
-        TrollUserMenu trollUserMenu = new TrollUserMenu(trollTypesRegistry);
+        TrollUserMenu trollUserMenu = new TrollUserMenu(trollTypesRegistry, translator);
 
-        getCommand("troll").setExecutor(new TrollCommand(trollUserMenu, userRegistry));
+        getCommand("troll").setExecutor(new TrollCommand(trollUserMenu, userRegistry, translator));
     }
 
     public TrollTypesRegistry getTrollTypesRegistry() {
@@ -55,4 +59,6 @@ public class TrollPlugin extends JavaPlugin {
     public UserRegistry getUserRegistry() {
         return userRegistry;
     }
+
+
 }

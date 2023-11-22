@@ -1,5 +1,6 @@
 package me.fixeddev.troll.troll.types;
 
+import me.fixeddev.troll.Translator;
 import me.fixeddev.troll.troll.TrollType;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -14,10 +15,13 @@ import java.util.Random;
 public class SlingshotTroll implements TrollType {
 
     private final Plugin plugin;
+    private final Translator translator;
+
     private final Random random = new Random();
 
-    public SlingshotTroll(Plugin plugin) {
+    public SlingshotTroll(Plugin plugin, Translator translator) {
         this.plugin = plugin;
+        this.translator = translator;
     }
 
     @Override
@@ -33,7 +37,7 @@ public class SlingshotTroll implements TrollType {
     @Override
     public void executeTroll(Player troll, Player trolled) {
         Location location = trolled.getLocation();
-        trolled.sendMessage(Component.translatable("troll.slingshot.bye-bye"));
+        translator.send(trolled, "troll.slingshot.bye-bye");
 
         Minecart minecart = location.getWorld().spawn(location, Minecart.class);
         minecart.addPassenger(trolled);
@@ -42,7 +46,7 @@ public class SlingshotTroll implements TrollType {
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             minecart.remove();
-            trolled.sendMessage(Component.translatable("troll.slingshot.good-luck"));
+            translator.send(trolled, "troll.slingshot.good-luck");
 
         }, 60);
     }

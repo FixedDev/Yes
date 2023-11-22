@@ -1,9 +1,11 @@
 package me.fixeddev.troll.commands;
 
+import me.fixeddev.troll.Translator;
 import me.fixeddev.troll.menu.TrollUserMenu;
 import me.fixeddev.troll.user.User;
 import me.fixeddev.troll.user.UserRegistry;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -18,10 +20,12 @@ public class TrollCommand implements CommandExecutor {
 
     private final TrollUserMenu trollUserMenu;
     private final UserRegistry userRegistry;
+    private final Translator translator;
 
-    public TrollCommand(TrollUserMenu trollUserMenu, UserRegistry userRegistry) {
+    public TrollCommand(TrollUserMenu trollUserMenu, UserRegistry userRegistry, Translator translator) {
         this.trollUserMenu = trollUserMenu;
         this.userRegistry = userRegistry;
+        this.translator = translator;
     }
 
     @Override
@@ -31,7 +35,7 @@ public class TrollCommand implements CommandExecutor {
         }
 
         if (!(sender instanceof Player senderPlayer)) {
-            sender.sendMessage(Component.translatable("troll.only-players"));
+            translator.send(sender, "troll.only-players");
 
             return true;
         }
@@ -40,7 +44,7 @@ public class TrollCommand implements CommandExecutor {
         Player player = Bukkit.getPlayer(playerName);
 
         if (player == null) {
-            sender.sendMessage(Component.translatable("troll.user-offline", Component.text(playerName)));
+            translator.send(sender, "troll.user-offline", Placeholder.unparsed("target", playerName));
 
             return true;
         }
@@ -49,7 +53,7 @@ public class TrollCommand implements CommandExecutor {
         Optional<User> optSender = userRegistry.getIfCached(senderPlayer.getUniqueId());
 
         if (optSender.isEmpty() || optUser.isEmpty()) {
-            sender.sendMessage(Component.translatable("troll.error"));
+            translator.send(sender, "troll.error");
 
             return true;
         }

@@ -7,11 +7,14 @@ import com.github.stefvanschie.inventoryframework.gui.type.util.Gui;
 import com.github.stefvanschie.inventoryframework.pane.MasonryPane;
 import com.github.stefvanschie.inventoryframework.pane.Pane;
 import com.github.stefvanschie.inventoryframework.pane.StaticPane;
+import me.fixeddev.troll.Translator;
 import me.fixeddev.troll.troll.TrollType;
 import me.fixeddev.troll.troll.TrollTypesRegistry;
 import me.fixeddev.troll.user.User;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -20,13 +23,15 @@ import java.util.Collection;
 public class TrollUserMenu {
 
     private final TrollTypesRegistry trollTypesRegistry;
+    private final Translator translator;
 
-    public TrollUserMenu(TrollTypesRegistry trollTypesRegistry) {
+    public TrollUserMenu(TrollTypesRegistry trollTypesRegistry, Translator translator) {
         this.trollTypesRegistry = trollTypesRegistry;
+        this.translator = translator;
     }
 
     public Gui generateGui(User target, User troll) {
-        ChestGui chestGui = new ChestGui(3, ComponentHolder.of(Component.translatable("troll.menu.title")));
+        ChestGui chestGui = new ChestGui(3, ComponentHolder.of(translator.translate("troll.menu.title", Placeholder.unparsed("target", Bukkit.getPlayer(target.id()).getName()))));
 
         chestGui.setOnGlobalClick(clickEvent -> {
             clickEvent.setCancelled(true);
@@ -62,7 +67,8 @@ public class TrollUserMenu {
 
     private GuiItem generateItem(TrollType trollType, User target, User troll) {
         ItemStack itemStack = new ItemStack(Material.PAPER);
-        itemStack.editMeta(itemMeta -> itemMeta.displayName(trollType.displayName()));
+
+        itemStack.editMeta(itemMeta -> itemMeta.displayName(translator.translate(trollType.displayName())));
 
         return new GuiItem(itemStack, inventoryClickEvent -> {
             trollType.executeTroll(troll, target);

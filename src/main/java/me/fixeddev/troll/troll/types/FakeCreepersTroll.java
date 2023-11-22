@@ -1,5 +1,6 @@
 package me.fixeddev.troll.troll.types;
 
+import me.fixeddev.troll.Translator;
 import me.fixeddev.troll.troll.TrollType;
 import net.kyori.adventure.text.Component;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
@@ -27,10 +28,12 @@ import java.util.Random;
 public class FakeCreepersTroll implements TrollType {
 
     private final Plugin plugin;
+    private final Translator translator;
     private final Random random = new Random();
 
-    public FakeCreepersTroll(Plugin plugin) {
+    public FakeCreepersTroll(Plugin plugin, Translator translator) {
         this.plugin = plugin;
+        this.translator = translator;
     }
 
     @Override
@@ -56,6 +59,7 @@ public class FakeCreepersTroll implements TrollType {
             spawnEntity(trolled, creeper);
         }
 
+        translator.send(trolled, "troll.fake-creepers.good-luck");
         trolled.playSound(location, Sound.ENTITY_CREEPER_PRIMED, 1, 0);
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {

@@ -1,5 +1,6 @@
 package me.fixeddev.troll.troll.types;
 
+import me.fixeddev.troll.Translator;
 import me.fixeddev.troll.troll.TrollType;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -17,9 +18,11 @@ import org.jetbrains.annotations.NotNull;
 public class KnockbackZombieTroll implements TrollType {
 
     private final Plugin plugin;
+    private final Translator translator;
 
-    public KnockbackZombieTroll(Plugin plugin) {
+    public KnockbackZombieTroll(Plugin plugin, Translator translator) {
         this.plugin = plugin;
+        this.translator = translator;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class KnockbackZombieTroll implements TrollType {
 
         Zombie zombie = generateZombie(location, trolled);
 
-        trolled.sendMessage(Component.translatable("troll.kb-zombie.good-luck"));
+        translator.send(trolled, "troll.kb-zombie.good-luck");
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             zombie.attack(trolled);
