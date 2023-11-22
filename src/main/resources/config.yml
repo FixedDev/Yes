@@ -1,5 +1,10 @@
 messages:
   troll:
+    stat-menu:
+      title: "Troll stats <target>"
+      last-troll: "<yellow>Last Trolled by<gray>: <white> <player>"
+      trolled-times: "<yellow>Trolled<gray>: <white> <times> times"
+      last-troll-type: "<yellow>Last Troll Type<gray>: <white> <type>"
     only-players: "<red>Only players can execute this command."
     user-offline: "<red>The user <target> is offline."
     error: "<red>An error occurred, sorry."
