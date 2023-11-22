@@ -1,5 +1,6 @@
 package me.fixeddev.troll.troll;
 
+import java.util.Collection;
 import java.util.Optional;
 
 public interface TrollTypesRegistry {
@@ -10,6 +11,11 @@ public interface TrollTypesRegistry {
      * @return A {@linkplain Optional} that might contain a {@linkplain TrollType}
      */
     Optional<TrollType> byId(String id);
+
+    /**
+     * @return All the {@linkplain TrollType} registered into this registry.
+     */
+    Collection<TrollType> allTypes();
 
     /**
      * Registers the specified {@linkplain TrollType} into this registry.

@@ -1,20 +1,23 @@
 package me.fixeddev.troll.troll;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public final class SimpleTrollTypesRegistry implements TrollTypesRegistry {
 
     private final Map<String, TrollType> trollTypeById;
 
     public SimpleTrollTypesRegistry() {
-        trollTypeById = new HashMap<>();
+        trollTypeById = new LinkedHashMap<>();
     }
 
     @Override
     public Optional<TrollType> byId(String id) {
         return Optional.ofNullable(trollTypeById.get(id));
+    }
+
+    @Override
+    public Collection<TrollType> allTypes() {
+        return trollTypeById.values();
     }
 
     @Override
