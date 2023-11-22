@@ -17,8 +17,6 @@ public class SlingshotTroll implements TrollType {
     private final Plugin plugin;
     private final Translator translator;
 
-    private final Random random = new Random();
-
     public SlingshotTroll(Plugin plugin, Translator translator) {
         this.plugin = plugin;
         this.translator = translator;

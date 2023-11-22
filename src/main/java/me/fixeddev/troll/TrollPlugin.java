@@ -5,6 +5,7 @@ import me.fixeddev.troll.listeners.UserListeners;
 import me.fixeddev.troll.menu.TrollUserMenu;
 import me.fixeddev.troll.troll.SimpleTrollTypesRegistry;
 import me.fixeddev.troll.troll.TrollTypesRegistry;
+import me.fixeddev.troll.troll.types.ArrowRainTroll;
 import me.fixeddev.troll.troll.types.FakeCreepersTroll;
 import me.fixeddev.troll.troll.types.KnockbackZombieTroll;
 import me.fixeddev.troll.troll.types.SlingshotTroll;
@@ -38,6 +39,7 @@ public class TrollPlugin extends JavaPlugin {
         trollTypesRegistry.register(new FakeCreepersTroll(this, translator));
         trollTypesRegistry.register(new SlingshotTroll(this, translator));
         trollTypesRegistry.register(new MagicCarpetTroll(this, translator));
+        trollTypesRegistry.register(new ArrowRainTroll(this, translator));
 
         userRegistry = new YamlUserRegistry(new File(getDataFolder(), "users"), trollTypesRegistry);
 

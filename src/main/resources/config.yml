@@ -1,0 +1,25 @@
+messages:
+  troll:
+    only-players: "<red>Only players can execute this command."
+    user-offline: "<red>The user <target> is offline."
+    error: "<red>An error occurred, sorry."
+    menu:
+      title: "Trolling <target>"
+    type:
+      kb-zombie: "<red>Knockback Zombie"
+      fake-creepers: "<green>10 Fake Charged Creepers"
+      slingshot: "<yellow>Slingshot into the sky."
+      magic-carpet: "<rainbow>Troll Magic Carpet"
+      arrow-rain: "<red>Arrow Rain"
+    arrow-rain:
+      good-luck: "<red>Try evading those arrows!"
+    magic-carpet:
+      start: "<yellow>Let's ride the sky with this magic carpet!"
+      bye-bye: "<yellow>Whoops, bye, bye."
+    fake-creepers:
+      good-luck: "<red>Good luck with all those Creepers."
+    kb-zombie:
+      good-luck: "<red>Enjoy the flight."
+    slingshot:
+      bye-bye: "<yellow>Enjoy the flight."
+      good-luck: "<yellow>Try surviving this."
