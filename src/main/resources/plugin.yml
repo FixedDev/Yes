@@ -7,5 +7,3 @@ commands:
     permission: "troll.command"
     description: "The command used to troll more users."
     usage: "<command> <target>"
-libraries:
-  - "com.github.stefvanschie.inventoryframework:IF:0.10.7"
