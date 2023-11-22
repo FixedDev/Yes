@@ -42,7 +42,7 @@ public class FakeCreepersTroll implements TrollType {
 
     @Override
     public Component displayName() {
-        return Component.translatable("fake-creepers");
+        return Component.translatable("troll.type.fake-creepers");
     }
 
     @Override

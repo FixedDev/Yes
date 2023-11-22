@@ -30,7 +30,7 @@ public class KnockbackZombieTroll implements TrollType {
 
     @Override
     public Component displayName() {
-        return Component.translatable("kb-zombie");
+        return Component.translatable("troll.type.kb-zombie");
     }
 
     @Override

@@ -42,7 +42,7 @@ public class SlingshotTroll implements TrollType {
 
     @Override
     public Component displayName() {
-        return Component.translatable("slingshot");
+        return Component.translatable("troll.type.slingshot");
     }
 
     @Override
